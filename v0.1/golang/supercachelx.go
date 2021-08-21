@@ -42,7 +42,7 @@ func fetchPostRequest(
 	return http.Post(cacheAddress, applicationJSON, bodyBytes)
 }
 
-func execInstructionsAndParseInt64(
+func ExecInstructionsAndParseInt64(
 	cacheAddress string,
 	instructions *[]interface{},
 ) (
@@ -71,7 +71,7 @@ func execInstructionsAndParseInt64(
 	return &count, errCount
 }
 
-func execInstructionsAndParseString(
+func ExecInstructionsAndParseString(
 	cacheAddress string,
 	instructions *[]interface{},
 ) (
@@ -101,7 +101,7 @@ func execInstructionsAndParseString(
 	return &respBodyAsStr, errJSONResponse
 }
 
-func execInstructionsAndParseMultipleInt64(
+func ExecInstructionsAndParseMultipleInt64(
 	cacheAddress string,
 	instructions *[]interface{},
 ) (
@@ -155,7 +155,7 @@ func execInstructionsAndParseMultipleInt64(
 	return &respBodyAsInts, nil
 }
 
-func execInstructionsAndParseBase64(
+func ExecInstructionsAndParseBase64(
 	cacheAddress string,
 	instructions *[]interface{},
 ) (

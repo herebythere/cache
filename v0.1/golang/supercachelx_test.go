@@ -2,25 +2,26 @@ package supercachelx
 
 import (
 	"encoding/json"
+	"os"
 	"testing"
 )
 
 const (
-	getCache        = "GET"
-	setCache        = "SET"
+	dayInSeconds    = 86400
+	emptyStr        = ""
 	expCache        = "EX"
-	mgetCache = "MGET"
-	dayInSeconds = 86400
-	testIncrement   = "INCR"
-	testExecSetStr  = "test_exec_set_string"
+	getCache        = "GET"
+	hello           = "hello"
+	helloWorld      = "hello_world"
+	mgetCache       = "MGET"
+	setCache        = "SET"
 	testExecSetJson = "test_supercache_exec_set_json"
-	testSCLX        = "test_supercache_local_interface"
+	testExecSetStr  = "test_exec_set_string"
 	testidA         = "supercachelx_test_id_a"
 	testidB         = "supercachelx_test_id_b"
-	helloWorld = "hello_world"
-	hello = "hello"
-	world = "world"
-	emptyStr = ""
+	testIncrement   = "INCR"
+	testSCLX        = "test_supercache_local_interface"
+	world           = "world"
 )
 
 var (
@@ -30,7 +31,7 @@ var (
 
 func TestExecInstructionsAndParseInt64(t *testing.T) {
 	instructions := []interface{}{testIncrement, testSCLX}
-	count, errCount := execInstructionsAndParseInt64(
+	count, errCount := ExecInstructionsAndParseInt64(
 		localCacheAddress,
 		&instructions,
 	)
@@ -53,7 +54,7 @@ func TestExecInstructionsAndParseMultipleInt64(t *testing.T) {
 	tailID := getCacheSetID(testSCLX, testidB)
 
 	instructions := []interface{}{mgetCache, headID, tailID}
-	counts, errCount := execInstructionsAndParseMultipleInt64(
+	counts, errCount := ExecInstructionsAndParseMultipleInt64(
 		localCacheAddress,
 		&instructions,
 	)
@@ -73,10 +74,10 @@ func TestExecInstructionsAndParseMultipleInt64(t *testing.T) {
 
 func TestExecGetInstructionsAndParseString(t *testing.T) {
 	setInstructions := []interface{}{setCache, testExecSetStr, helloWorld, expCache, dayInSeconds}
-	execInstructionsAndParseString(localCacheAddress, &setInstructions)
+	ExecInstructionsAndParseString(localCacheAddress, &setInstructions)
 
 	getInstructions := []interface{}{getCache, testExecSetStr}
-	parsedStr, errParsedStr := execInstructionsAndParseString(
+	parsedStr, errParsedStr := ExecInstructionsAndParseString(
 		localCacheAddress,
 		&getInstructions,
 	)
@@ -104,10 +105,10 @@ func TestExecGetInstructionsAndParseBase64(t *testing.T) {
 	helloWorldJSONStr := string(helloWorldJSONBytes)
 
 	setInstructions := []interface{}{setCache, testExecSetJson, helloWorldJSONStr, expCache, dayInSeconds}
-	execInstructionsAndParseString(localCacheAddress, &setInstructions)
+	ExecInstructionsAndParseString(localCacheAddress, &setInstructions)
 
 	getInstructions := []interface{}{getCache, testExecSetJson}
-	parsedStr, errParsedStr := execInstructionsAndParseBase64(
+	parsedStr, errParsedStr := ExecInstructionsAndParseBase64(
 		localCacheAddress,
 		&getInstructions,
 	)
