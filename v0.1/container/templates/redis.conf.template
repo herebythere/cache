@@ -1,5 +1,5 @@
 # NETWORK
-port ${port}
+port ${container_port}
 
 # MEMORY
 maxmemory ${max_size_in_mb}

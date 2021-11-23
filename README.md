@@ -1,7 +1,13 @@
 # Cache
 
-Utility functions to interface with super_cache
+Container to deploy a redis cache
 
+Utility functions to interface with a redis cache
+
+
+## Versions
+
+[v0.1](./v0.1/README.md)
 
 ## License
 

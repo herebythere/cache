@@ -12,12 +12,10 @@ store_data_dir = "data/"
 
 container_compose_template_filepath = "podman-compose.yml.template"
 container_compose_filepath = "podman-compose.yml"
-
 conf_template_filepath = "redis.conf.template"
 conf_filepath = "redis.conf"
-
-container_template_filepath = "redis.podmanfile.template" 
-container_filepath = "redis.podmanfile" 
+container_template_filepath = "redis.podmanfile.template"
+container_filepath = "redis.podmanfile"
 
 # defaults
 
@@ -28,9 +26,11 @@ default_template_filepath = "templates/"
 # parser
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--dest", help="provide a preferred desitnation for build results")
+parser.add_argument(
+    "--dest", help="provide a preferred desitnation for build results")
 parser.add_argument("--templates", help="preferred template directory")
-parser.add_argument("--config", help="override everything with a json config file")
+parser.add_argument(
+    "--config", help="override everything with a json config file")
 
 
 def apply_defaults_to_args(args):
@@ -40,7 +40,7 @@ def apply_defaults_to_args(args):
         args["templates"] = default_template_filepath
     if args["dest"] == None:
         args["dest"] = default_dest_filepath
-    
+
     return args
 
 
@@ -88,7 +88,6 @@ def create_required_templates(args, filepaths, config):
     conf_and_filepaths_map.update(args)
     conf_and_filepaths_map.update(config)
 
-
     create_template(filepaths["container_compose_template"],
                     filepaths["container_compose"],
                     conf_and_filepaths_map)
@@ -97,16 +96,12 @@ def create_required_templates(args, filepaths, config):
                     filepaths["conf"],
                     conf_and_filepaths_map)
 
-
     create_template(filepaths["container_template"],
                     filepaths["container"],
                     conf_and_filepaths_map)
 
 
 def compose_cache_with_podman(filepaths):
-    print("compose!", filepaths["container_compose"])
-    print("compose!", filepaths["container_compose"])
-
     subprocess.run(["podman-compose", "--file",
                    filepaths['container_compose'], "build"])
 
@@ -122,5 +117,5 @@ if __name__ == "__main__":
     args = apply_defaults_to_args(args)
     filepaths = get_filepaths(args)
     config = get_config(args["config"])
-    
+
     build_cache_with_podman(args, filepaths, config)
