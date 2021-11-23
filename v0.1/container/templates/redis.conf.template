@@ -1,0 +1,7 @@
+# NETWORK
+port ${port}
+
+# MEMORY
+maxmemory ${max_size_in_mb}
+maxmemory-samples ${max_samples}
+maxmemory-policy volatile-lru

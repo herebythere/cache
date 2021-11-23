@@ -1,4 +1,4 @@
-# SuperCacheLX
+# Cache
 
 Utility functions to interface with super_cache
 

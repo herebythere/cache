@@ -1,0 +1,9 @@
+version: "3"
+services:
+  cache:
+    container_name: cache_redis_${port}
+    build:
+      context: ./
+      dockerfile: redis.podmanfile
+    volumes:
+      - ./data/:/data:z

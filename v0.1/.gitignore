@@ -1,0 +1,7 @@
+# defaults
+.DS_STORE
+*.json
+*.yml
+
+# hide build artifacts
+container/dest/

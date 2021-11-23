@@ -1,0 +1,5 @@
+{
+    "max_samples": 5,
+    "max_size_in_mb": "64mb",
+    "port": 6379
+}
