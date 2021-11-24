@@ -1,11 +1,11 @@
 version: "3"
 services:
   cache:
-    container_name: cache_redis_${container_port}
+    container_name: cache_redis_${host_port}
     build:
       context: ./
       dockerfile: redis.podmanfile
     ports:
-      - ${host_port}:6379
+      - ${host_port}:${container_port}
     volumes:
       - ./data/:/data:z

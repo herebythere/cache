@@ -12,6 +12,9 @@ import (
 const (
 	testEntry       = "hello_world_test"
 	testEntryResult = "how_are_you_starshine?"
+
+	defaultCacheAddress = "127.0.0.1"
+	defaultCachePort = "3010"
 )
 
 // Env variables for tests
@@ -19,24 +22,16 @@ var (
 	cacheAddress = os.Getenv("TEST_CACHE_HOST_ADDRESS")
 	cachePort    = os.Getenv("TEST_CACHE_HOST_PORT")
 
-	details = CacheDetails{
-		Host:        "127.0.0.1",
-		IdleTimeout: time.Second * 2,
-		MaxActive:   128,
-		MaxIdle:     3,
-		Port:        3010,
-		Protocol:    "tcp",
-	}
-
-	cache, errCache = NewInterface(&details)
+	details, errDetails = getDetails()
+	cache, errCache     = NewInterface(&details)
 )
 
 func getDetails() (*CacheDetails, error) {
 	if cacheAddress == "" {
-		cacheAddress = "127.0.0.1"
+		cacheAddress = defaultCacheAddress
 	}
 	if cachePort == "" {
-		cachePort = "6379"
+		cachePort = defaultCachePort
 	}
 
 	cachePortInt64, errCachePortInt64 := strconv.ParseInt(cachePort, 10, 64)
@@ -54,6 +49,15 @@ func getDetails() (*CacheDetails, error) {
 	}
 
 	return &details, nil
+}
+
+func TestDetailsExists(t *testing.T) {
+	if details == nil {
+		t.Error("nil parameters should return nil")
+	}
+	if errDetails != nil {
+		t.Error(errDetails.Error())
+	}
 }
 
 func TestExists(t *testing.T) {

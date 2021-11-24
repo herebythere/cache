@@ -20,7 +20,7 @@ container_filepath = "redis.podmanfile"
 # defaults
 
 default_config_filepath = "config/cache.json"
-default_dest_filepath = "dest/"
+default_dest_filepath = "cache/"
 default_template_filepath = "templates/"
 
 # parser
@@ -84,21 +84,21 @@ def create_template(source, target, keywords):
 
 
 def create_required_templates(args, filepaths, config):
-    conf_and_filepaths_map = {}
-    conf_and_filepaths_map.update(args)
-    conf_and_filepaths_map.update(config)
+    args_and_config_map = {}
+    args_and_config_map.update(args)
+    args_and_config_map.update(config)
 
     create_template(filepaths["container_compose_template"],
                     filepaths["container_compose"],
-                    conf_and_filepaths_map)
+                    args_and_config_map)
 
     create_template(filepaths["conf_template"],
                     filepaths["conf"],
-                    conf_and_filepaths_map)
+                    args_and_config_map)
 
     create_template(filepaths["container_template"],
                     filepaths["container"],
-                    conf_and_filepaths_map)
+                    args_and_config_map)
 
 
 def compose_cache_with_podman(filepaths):

@@ -1,6 +1,6 @@
 {
     "container_port": 6379,
-    "external_port": 3010,
+    "host_port": 3010,
     "max_samples": 5,
     "max_size_in_mb": "64mb"
 }

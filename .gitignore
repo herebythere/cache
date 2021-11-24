@@ -4,4 +4,4 @@
 *.yml
 
 # hide build artifacts
-v0.1/container/dest/
+v0.1/container/cache/
