@@ -1,6 +1,14 @@
 # defaults
 .DS_STORE
+*.cf
+*.conf
+*.crt
+*.env
 *.json
+*.key
+*.pem
+*.rdb
+*.txt
 *.yml
 
 # hide build artifacts

@@ -107,6 +107,7 @@ def compose_cache_with_podman(filepaths):
 
 
 def build_cache_with_podman(args, filepaths, config):
+    print(args, filepaths, config)
     create_required_directories(args)
     create_required_templates(args, filepaths, config)
     compose_cache_with_podman(filepaths)

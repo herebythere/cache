@@ -1,7 +1,7 @@
 import argparse
 import subprocess
 
-default_config_filepath = "./dest/podman-compose.yml"
+default_config_filepath = "./cache/podman-compose.yml"
 
 parser = argparse.ArgumentParser()
 parser.add_argument(

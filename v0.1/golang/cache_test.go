@@ -14,7 +14,7 @@ const (
 	testEntryResult = "how_are_you_starshine?"
 
 	defaultCacheAddress = "127.0.0.1"
-	defaultCachePort = "3010"
+	defaultCachePort    = "3010"
 )
 
 // Env variables for tests
@@ -23,7 +23,7 @@ var (
 	cachePort    = os.Getenv("TEST_CACHE_HOST_PORT")
 
 	details, errDetails = getDetails()
-	cache, errCache     = NewInterface(&details)
+	cache, errCache     = NewInterface(details)
 )
 
 func getDetails() (*CacheDetails, error) {
